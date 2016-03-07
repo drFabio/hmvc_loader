@@ -27,9 +27,9 @@ const getFilesMap = function *(srcDir, componentDir ){
             appData[type]= {}    
         }
         if( typeof appData[type][namespace] =='undefined'){
-            appData[type][namespace] = []
+            appData[type][namespace] = {}
         }
-        appData[type][namespace].push({name,file})
+        appData[type][namespace][name] = {file}
     })
     return appData
 }

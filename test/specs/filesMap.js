@@ -1,37 +1,13 @@
 'use strict'
-const path = require('path')
 const chai = require('chai')
 const expect = chai.expect
+const mockData = require('../mocks/data')
 describe('File Mapping',()=>{
     const getFilesMap = require('../../src/directory').getFilesMap
     describe('Files map',()=>{
-        it('Gets the files map and flatten it, indexing by type ', function *(){
-            const appDir = path.resolve(__dirname, '../mocks/app')+'/'
-            const files = yield getFilesMap(appDir)
-            const expected = {
-                'models': {
-                    'bar/components/xpto': [
-                        {
-                            'name': 'Zap',
-                            'file': appDir+'components/bar/components/xpto/models/Zap.js'
-                        }
-                    ],
-                    'foo': [
-                        {
-                            'name': 'Index',
-                            'file': appDir+'components/foo/models/Index.js'
-                        }
-                    ]
-                },
-                'controllers': {
-                    'bar': [
-                        {
-                            'name': 'Baz',
-                            'file': appDir+'components/bar/controllers/Baz.js'
-                        }
-                    ]
-                }
-            }
+        it.only('Gets the files map and flatten it, indexing by type ', function *(){
+            const files = yield getFilesMap(mockData.DEFAULT_APP_DIR)
+            const expected = mockData.EXPECTED_DEFAULT_MAP
             expect(files).to.deep.equal(expected)
         })
     })

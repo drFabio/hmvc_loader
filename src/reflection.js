@@ -13,7 +13,8 @@ const getParamNames = (func) => {
 
 const getObjectMethodParamMap = (componentObj) => {
     const prototype = Object.getPrototypeOf(componentObj)
-    const methods = Object.getOwnPropertyNames(prototype)
+    let methods = Object.getOwnPropertyNames(prototype)
+    methods = methods.concat(Object.getOwnPropertyNames(componentObj))
     const methodParamMap = {}
     for(const method of methods){
         if(!componentObj[method] instanceof Function || method === 'constructor' || method.startsWith('_')) continue

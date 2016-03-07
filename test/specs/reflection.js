@@ -24,5 +24,17 @@ describe('Reflection',()=>{
             const methodParams = getObjectMethodParamMap(obj)
             expect(methodParams).to.deep.equal({'foo':['bar','baz']})
         })
+        it('Get the data from a object derived from a function class ',() =>{
+            function MyClass(){
+                this.zip = (zap) =>{
+
+                }
+            }
+            MyClass.prototype.foo = (bar, baz) => {}
+            MyClass.prototype._iShouldNotShowIAmProtected = (bar, baz) => {}
+            const obj = new MyClass()
+            const methodParams = getObjectMethodParamMap(obj)
+            expect(methodParams).to.deep.equal({'foo':['bar','baz'],'zip':['zap']})
+        })
     })
 })

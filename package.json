@@ -6,7 +6,6 @@
   "scripts": {
     "test": "NODE_ENV=test mocha  --harmony --require co-mocha --recursive 'test/specs/**/*.js'",
     "lint": "eslint --fix --ext .js src test"
-
   },
   "repository": {
     "type": "git",
@@ -31,6 +30,7 @@
     "chai": "^3.5.0",
     "co-mocha": "^1.1.2",
     "eslint": "^2.2.0",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "sinon": "^1.17.3"
   }
 }
