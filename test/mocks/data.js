@@ -19,10 +19,22 @@ const EXPECTED_DEFAULT_MAP = {
             'Baz':{
                 'file': appDir+'default/components/bar/controllers/Baz.js'
             }
-        }                
+        },
+        'foo':{
+            'Index':{
+                'file': appDir+'default/components/foo/controllers/Index.js'
+            }
+        }             
+    },
+    'views': {
+        'foo':{
+            'Index':{
+                'file': appDir+'default/components/foo/views/Index.js'
+            }
+        }
     }
 }
 module.exports= {
     EXPECTED_DEFAULT_MAP,
     DEFAULT_APP_DIR:appDir+'default/'
-};
+}

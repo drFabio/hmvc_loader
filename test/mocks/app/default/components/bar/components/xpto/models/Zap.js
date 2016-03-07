@@ -1,6 +1,7 @@
+/*eslint no-unused-vars: 0*/
+
 class Zap{
     foo(bar){
-        return bar
     }
 }
-module.exports= Zap;
+module.exports= Zap

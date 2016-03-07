@@ -45,17 +45,20 @@ class Loader{
         name = name || 'Index'
         return this._filesMap[type][namespace][name].obj
     }
-    buildRoutes(addRoute){
-        const controllers = this._filesMap['controllers']
+    buildRoutes(addRoute,controllersName){
+        controllersName = controllersName || 'controllers'
+        const controllers = this._filesMap[controllersName]
         const componentDir = this._config.componentDir
         for(const namespace in controllers ){
             const baseUrl = '/'+namespace.replace(componentDir+'/','')
-            for(const data of controllers[namespace]){
+            for(const name in controllers[namespace]){
                 let url = baseUrl
-                if(data.name.toLowerCase()!=='index'){
-                    url += '/'+ data.name
+                const saneName = name.toLowerCase()
+                if(saneName !=='index'){
+                    url += '/'+ saneName
                 }
-                addRoute(url, data.obj,getObjectMethodParamMap(data.obj))
+                const obj = controllers[namespace][name].obj
+                addRoute(url, getObjectMethodParamMap(obj), obj)
             }
         }
     }
