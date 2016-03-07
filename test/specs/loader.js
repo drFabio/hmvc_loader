@@ -23,7 +23,7 @@ describe('Loader',()=>{
             for(const type in loadData){
                 for(const namespace in loadData[type]){
                     for(const name in loadData[type][namespace]){
-                        const file = loadData[type][namespace][name].file
+                        const file = loadData[type][namespace][name]
                         const factory = myLoader._config.dirFactoryMap[type]
                         const call = factory.calledWithExactly(myLoader, namespace, name, file) 
                         expect(call).to.be.true
@@ -40,7 +40,7 @@ describe('Loader',()=>{
             myLoader.loadComponents()
             for(const namespace in loadData[type]){
                 for(const name in loadData[type][namespace]){
-                    const file = loadData[type][namespace][name].file
+                    const file = loadData[type][namespace][name]
                     const factory = myLoader._config.dirFactoryMap[type]
                     const call = factory.calledWithExactly(myLoader, namespace, name, file) 
                     expect(call).to.be.true
@@ -62,7 +62,7 @@ describe('Loader',()=>{
             for(const type in loadData){
                 for(const namespace in loadData[type]){
                     for(const name in loadData[type][namespace]){
-                        const file = loadData[type][namespace][name].file
+                        const file = loadData[type][namespace][name]
                         const factory = myLoader._config.dirFactoryMap[type]
                         const call = factory.calledWithExactly(myLoader, namespace, name, file) 
                         expect(call).to.be.true
@@ -82,7 +82,7 @@ describe('Loader',()=>{
             for(const type in loadData){
                 for(const namespace in loadData[type]){
                     for(const name in loadData[type][namespace]){
-                        const file = loadData[type][namespace][name].file
+                        const file = loadData[type][namespace][name]
                         const factory = myLoader._config.dirFactoryMap[type]
                         const call = factory.calledWithExactly(myLoader, namespace, name, file) 
                         expect(call).to.be.true

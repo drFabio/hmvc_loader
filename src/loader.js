@@ -20,11 +20,21 @@ const DEFAULT_CONFIG = {
 class Loader{
     constructor(filesMap,  config ){
         this._config = config || DEFAULT_CONFIG
-        this._filesMap =  Object.assign({} ,filesMap)
+        if(!this._config.componentDir){
+            this._config.componentDir = DEFAULT_CONFIG.componentDir
+        }
+        //Deep cloning
+        this._filesMap =  JSON.parse(JSON.stringify(filesMap))
     }
     loadComponents(){
         for(const dir in this._config.dirFactoryMap){
-            const factory = this._config.dirFactoryMap[dir]
+            let factory = this._config.dirFactoryMap[dir]
+            if(!factory){
+                factory = this._config.dirFactoryMap['default']
+                if(!factory){
+                    factory = defaultFactory
+                }
+            }
             this._loadComponent(dir, factory)
         }
     }
@@ -32,10 +42,9 @@ class Loader{
         const components = this._filesMap[type]
         for(const namespace in components ){
             for(const name in components[namespace]){
-                const data = components[namespace][name]
-                const file = data.file
-                const component = factory(this, namespace, name, file)
-                data.obj = component
+                const file = components[namespace][name]
+                const obj = factory(this, namespace, name, file)
+                components[namespace][name] = {file,obj}
             }
         }
     }
