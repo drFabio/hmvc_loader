@@ -5,18 +5,18 @@ It traverses the folders indexing JS files trhough an MVC logic
 # Usage
     Giving a structure like:
 
-    * root
-        * componentName1
-            * controllers
-                * A.js
-            * models
+    - root
+        - componentName1
+            - controllers
+                - A.js
+            - models
                 B.js
-            * views
+            - views
                 C.js
-            * components
-                * componentName2
-                    * controllers
-                        * D.js
+            - components
+                - componentName2
+                    - controllers
+                        - D.js
 
 It loads the namespace on a sensible way, can be used to build urls or simply acess components by 
 ## Factory initialization

@@ -1,6 +1,6 @@
 {
   "name": "hmvc_loader",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "An non opnionated hmvc loader for node",
   "main": "index.js",
   "scripts": {
