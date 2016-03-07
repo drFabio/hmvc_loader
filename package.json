@@ -1,0 +1,36 @@
+{
+  "name": "hmvc_loader",
+  "version": "1.0.0",
+  "description": "An non opnionated hmvc loader for node",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test mocha  --harmony --require co-mocha --recursive 'test/specs/**/*.js'",
+    "lint": "eslint --fix --ext .js src test"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drFabio/hmvc_loader.git"
+  },
+  "keywords": [
+    "hmvc",
+    "loader"
+  ],
+  "author": "Fabio <blackjackdevel@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/drFabio/hmvc_loader/issues"
+  },
+  "homepage": "https://github.com/drFabio/hmvc_loader#readme",
+  "dependencies": {
+    "co": "^4.6.0",
+    "glob": "^7.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^5.0.0",
+    "chai": "^3.5.0",
+    "co-mocha": "^1.1.2",
+    "eslint": "^2.2.0",
+    "mocha": "^2.4.5"
+  }
+}
