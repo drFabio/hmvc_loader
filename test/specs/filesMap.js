@@ -10,5 +10,10 @@ describe('File Mapping',()=>{
             const expected = mockData.EXPECTED_DEFAULT_MAP
             expect(files).to.deep.equal(expected)
         })
+        it('Accept custom configurations ', function *(){
+            const files = yield getFilesMap(mockData.CUSTOM_APP_DIR,'modules')
+            const expected = mockData.EXPECTED_CUSTOM_MAP
+            expect(files).to.deep.equal(expected)
+        })
     })
 })

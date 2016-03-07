@@ -47,6 +47,31 @@ describe('Loader',()=>{
                 }
             }
         })
+        it('loads a custom structure',()=>{
+            const config = {
+                'dirFactoryMap':{
+                    'M':sandbox.stub(),
+                    'V':sandbox.stub(),
+                    'C':sandbox.stub()
+                },
+                'componentDir':'modules'
+            }
+            const loadData = mockData.EXPECTED_CUSTOM_MAP
+            const myLoader = new Loader(loadData,config)
+            myLoader.loadComponents()
+            for(const type in loadData){
+                for(const namespace in loadData[type]){
+                    for(const name in loadData[type][namespace]){
+                        const file = loadData[type][namespace][name].file
+                        const factory = myLoader._config.dirFactoryMap[type]
+                        const call = factory.calledWithExactly(myLoader, namespace, name, file) 
+                        expect(call).to.be.true
+                    }
+                }
+            }
+
+
+        })
         it('Loads by path on the factory function', function * (){
             const loadData = mockData.EXPECTED_DEFAULT_MAP
             const myLoader = yield Loader.getLoaderFromPath(mockData.DEFAULT_APP_DIR)
@@ -77,7 +102,7 @@ describe('Loader',()=>{
             const type = 'controllers'
             for(const namespace in loadData[type]){
                 for(const name in loadData[type][namespace]){
-                    let expectedUrl = '/'+namespace.replace('components/','')
+                    let expectedUrl = '/'+namespace.replace(new RegExp('/components','g'),'')
                     if(name !== 'Index'){
                         expectedUrl += '/'+name.toLowerCase()
                     }
@@ -86,6 +111,26 @@ describe('Loader',()=>{
                 }
             }
         })
+        it('Build the route for custom structure',()=>{
+            const loadData = mockData.EXPECTED_DEFAULT_MAP
+            const myLoader = new Loader(loadData)
+            myLoader.loadComponents()
+            const stub = sandbox.stub()
+            myLoader.buildRoutes(stub)
+            const expectedMethodParam = {'foo': ['bar']}
+            const type = 'controllers'
+            for(const namespace in loadData[type]){
+                for(const name in loadData[type][namespace]){
+                    let expectedUrl = '/'+namespace.replace(new RegExp('/modules','g'),'')
+                    if(name !== 'Index'){
+                        expectedUrl += '/'+name.toLowerCase()
+                    }
+                    const call = stub.calledWith(expectedUrl, expectedMethodParam) 
+                    expect(call).to.be.true
+                }
+            }
+        })
+
     })
     
     afterEach(() => {

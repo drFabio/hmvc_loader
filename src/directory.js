@@ -3,6 +3,7 @@
 const glob = require('glob')
 const getFilesMap = function *(srcDir, componentDir ){
     componentDir = componentDir || 'components'
+    console.log('THE COMPONENT DIR '+componentDir);
     const options = null 
     const promise = new Promise((resolve, reject)=>{
         glob(srcDir+componentDir+'/**/*.js', options, (err,data)=>{
@@ -22,7 +23,8 @@ const getFilesMap = function *(srcDir, componentDir ){
         const tail = basePath.substr(0,lastSlashPos)
         lastSlashPos = tail.lastIndexOf('/')
         const type = tail.substr(lastSlashPos+1)
-        const namespace = tail.substr(0, lastSlashPos)
+        console.log('TAIL '+tail+'   /'+componentDir);
+        const namespace = tail.substr(0, lastSlashPos).replace(new RegExp('\/'+componentDir,'g'),'')
         if(typeof appData[type] =='undefined' ){
             appData[type]= {}    
         }
