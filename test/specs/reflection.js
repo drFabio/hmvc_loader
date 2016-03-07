@@ -24,6 +24,35 @@ describe('Reflection',()=>{
             const methodParams = getObjectMethodParamMap(obj)
             expect(methodParams).to.deep.equal({'foo':['bar','baz']})
         })
+        it('Get the data from a parent object derived from an ES6 class ',() =>{
+            class ParentClass{
+                zap(zip){
+
+                }
+                _iShouldNotShowIAmAlsoProtected(xpto){
+                }
+                xpto(otpx){
+
+                }
+            }
+            class MyClass extends ParentClass{
+                foo(bar, baz){
+                }
+                _iShouldNotShowIAmProtected(xpto){
+                }
+                xpto(anotherParam){
+                    
+                }
+            }
+            const obj = new MyClass()
+            const methodParams = getObjectMethodParamMap(obj)
+            const expected = {
+                'foo':['bar','baz'],
+                'xpto':['anotherParam'],
+                'zap':['zip']
+            }
+            expect(methodParams).to.deep.equal(expected)
+        })
         it('Get the data from a object derived from a function class ',() =>{
             function MyClass(){
                 this.zip = (zap) =>{

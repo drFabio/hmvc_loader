@@ -1,7 +1,7 @@
 {
   "name": "hmvc_loader",
-  "version": "0.1.0",
-  "description": "An non opnionated hmvc loader for node",
+  "version": "0.1.1",
+  "description": "A non opnionated hmvc loader for node",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test mocha  --harmony --require co-mocha --recursive 'test/specs/**/*.js'",
