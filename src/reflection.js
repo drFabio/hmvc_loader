@@ -1,4 +1,4 @@
-"use strict"
+'use strict'
 
 const STRIP_COMMENTS = /(\/\/.*$)|(\/\*[\s\S]*?\*\/)|(\s*=[^,\)]*(('(?:\\'|[^'\r\n])*')|("(?:\\"|[^"\r\n])*"))|(\s*=[^,\)]*))/mg
 const ARGUMENT_NAMES = /([^\s,]+)/g
@@ -16,7 +16,7 @@ const getObjectMethodParamMap = (componentObj) => {
     const methods = Object.getOwnPropertyNames(prototype)
     const methodParamMap = {}
     for(const method of methods){
-        if(!componentObj[method] instanceof Function || method === 'constructor') continue
+        if(!componentObj[method] instanceof Function || method === 'constructor' || method.startsWith('_')) continue
         methodParamMap[method] = getParamNames(componentObj[method])
     }
     return methodParamMap

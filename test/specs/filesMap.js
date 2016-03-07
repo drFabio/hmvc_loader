@@ -1,8 +1,8 @@
-"use strict"
+'use strict'
 const path = require('path')
 const chai = require('chai')
 const expect = chai.expect
-describe.only('File Mapping',()=>{
+describe('File Mapping',()=>{
     const getFilesMap = require('../../src/directory').getFilesMap
     describe('Files map',()=>{
         it('Gets the files map and flatten it, indexing by type ', function *(){

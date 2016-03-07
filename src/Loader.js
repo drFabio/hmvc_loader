@@ -1,4 +1,4 @@
-"use strict"
+'use strict'
 
 const co = require('co')
 const factories = require('./componentFactory')
