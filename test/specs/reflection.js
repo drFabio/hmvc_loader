@@ -17,6 +17,9 @@ describe('Reflection',()=>{
             class MyClass{
                 foo(bar, baz){
                 }
+                * ploc(plim){
+
+                }
                 _iShouldNotShowIAmProtected(xpto){
                 }
                 get propertiesDoNotShowAlso(){
@@ -25,7 +28,7 @@ describe('Reflection',()=>{
             }
             const obj = new MyClass()
             const methodParams = getObjectMethodParamMap(obj)
-            expect(methodParams).to.deep.equal({'foo':['bar','baz']})
+            expect(methodParams).to.deep.equal({'foo':['bar','baz'],'ploc':['plim']})
         })
         it('Get the data from a parent object derived from an ES6 class ',() =>{
             class ParentClass{
