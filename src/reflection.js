@@ -21,7 +21,7 @@ const getObjectMethodParamMap = (componentObj) => {
     }
     const methodParamMap = {}
     for(const method of methods){
-        if(!componentObj[method] instanceof Function || method === 'constructor' || method.startsWith('_')) continue
+        if(!(componentObj[method] instanceof Function) || method === 'constructor' || method.startsWith('_')) continue
         methodParamMap[method] = getParamNames(componentObj[method])
     }
     return methodParamMap

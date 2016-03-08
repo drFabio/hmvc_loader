@@ -19,6 +19,9 @@ describe('Reflection',()=>{
                 }
                 _iShouldNotShowIAmProtected(xpto){
                 }
+                get propertiesDoNotShowAlso(){
+
+                }
             }
             const obj = new MyClass()
             const methodParams = getObjectMethodParamMap(obj)
