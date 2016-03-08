@@ -52,6 +52,7 @@ class Loader{
         if(!this._filesMap[type]) return null
         if(!this._filesMap[type][namespace]) return null
         name = name || 'Index'
+        if(!this._filesMap[type][namespace][name]) return null
         return this._filesMap[type][namespace][name].obj
     }
     buildRoutes(addRoute,controllersName){
