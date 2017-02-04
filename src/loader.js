@@ -60,7 +60,7 @@ class Loader{
         const controllers = this._filesMap[controllersName]
         let componentDir = this._config.componentDir
         if (componentDir.indexOf('\\') !== -1) {
-            componentDir = componentDir.replace('\\','/')
+            componentDir = componentDir.replace(/\\/g, '/')
         }
         for(const namespace in controllers ){
             const baseUrl = '/'+namespace.replace(componentDir+'/','')
