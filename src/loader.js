@@ -58,7 +58,10 @@ class Loader{
     buildRoutes(addRoute,controllersName){
         controllersName = controllersName || 'controllers'
         const controllers = this._filesMap[controllersName]
-        const componentDir = this._config.componentDir
+        let componentDir = this._config.componentDir
+        if (componentDir.indexOf('\\') !== -1) {
+            componentDir = componentDir.replace('\\','/')
+        }
         for(const namespace in controllers ){
             const baseUrl = '/'+namespace.replace(componentDir+'/','')
             for(const name in controllers[namespace]){
