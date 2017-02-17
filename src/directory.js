@@ -4,6 +4,7 @@ const glob = require('glob')
 const getFilesMap = function *(srcDir, componentDir ){
     componentDir = componentDir || 'components'
     const options = null 
+    srcDir = srcDir.replace(/\\/g, '/')
     if(!srcDir.endsWith('/')){
         srcDir += '/'
     }
@@ -18,6 +19,7 @@ const getFilesMap = function *(srcDir, componentDir ){
     const rawFiles =  yield promise
     const appData = {}
     rawFiles.map((file)=> {
+        file = file.replace(/\\/g, '/')
         const basePath = file.replace(srcDir,'')
         let lastSlashPos = basePath.lastIndexOf('/')
         let name = basePath.substr(lastSlashPos+1)
